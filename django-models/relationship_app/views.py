@@ -7,7 +7,8 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
 
-from .models import Book, Library, UserProfile
+from .models import Library
+from .models import Book, UserProfile
 from .forms import BookForm
 
 
