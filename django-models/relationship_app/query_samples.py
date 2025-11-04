@@ -39,9 +39,9 @@ if __name__ == '__main__':
     # Retrieve librarian for a library
     try:
         lib = Library.objects.get(name=library_name)
-        if hasattr(lib, 'librarian'):
-            print(f"Librarian for {library_name}: {lib.librarian.name}")
-        else:
-            print(f"No librarian assigned to {library_name}")
+        librarian = Librarian.objects.get(library=lib)
+        print(f"Librarian for {library_name}: {librarian.name}")
     except Library.DoesNotExist:
-        pass
+        print(f"No library named {library_name}")
+    except Librarian.DoesNotExist:
+        print(f"No librarian assigned to {library_name}")
