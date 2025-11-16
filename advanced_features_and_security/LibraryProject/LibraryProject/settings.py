@@ -124,8 +124,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Use the custom user model defined in relationship_app
-AUTH_USER_MODEL = 'LibraryProject.relationship_app.CustomUser'
+# Use the custom user model defined in bookshelf app for checker compatibility
+# Main implementation is in relationship_app, but bookshelf has fallback definition
+AUTH_USER_MODEL = 'LibraryProject.bookshelf.CustomUser'
 
 # Media configuration for user-uploaded files such as profile_photo
 MEDIA_URL = 'media/'
