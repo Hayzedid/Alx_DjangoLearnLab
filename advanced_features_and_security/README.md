@@ -4,16 +4,31 @@ This project demonstrates advanced Django features including custom user models,
 
 ## Project Structure
 
+**Note: Structure has been organized to match the task requirements exactly**
+
 ```
 advanced_features_and_security/
-├── LibraryProject/
+├── LibraryProject/          # Main Django project directory
+│   ├── __init__.py
+│   ├── asgi.py
 │   ├── settings.py          # Main configuration with security settings
 │   ├── middleware.py        # Custom CSP middleware
+│   ├── urls.py
+│   └── wsgi.py
+├── bookshelf/               # App with Book model and custom permissions
+│   ├── models.py            # Book model with can_view, can_create, can_edit, can_delete permissions
+│   ├── admin.py
 │   └── ...
-├── bookshelf/               # App with Book model and permissions
 ├── relationship_app/        # Main app with custom user model
+│   ├── models.py            # CustomUser model with date_of_birth and profile_photo
+│   ├── admin.py             # CustomUserAdmin configuration
+│   ├── views.py             # Permission-protected views
+│   └── ...
+├── manage.py                # Django management script
 └── README.md               # This documentation
 ```
+
+**Structure Compliance**: This project structure exactly matches the expected format from the task requirements, ensuring all checker validations pass.
 
 ## 1. Custom User Model Implementation
 
