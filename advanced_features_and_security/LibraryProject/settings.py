@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bookshelf',
-    'relationship_app',
+    'LibraryProject.bookshelf',
+    'LibraryProject.relationship_app',
 ]
 
 MIDDLEWARE = [
@@ -125,7 +125,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Use the custom user model defined in relationship_app
-AUTH_USER_MODEL = 'relationship_app.CustomUser'
+AUTH_USER_MODEL = 'LibraryProject.relationship_app.CustomUser'
 
 # Media configuration for user-uploaded files such as profile_photo
 MEDIA_URL = 'media/'

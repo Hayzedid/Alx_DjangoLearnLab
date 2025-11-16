@@ -12,7 +12,7 @@ from .models import Book, UserProfile
 from .forms import BookForm
 
 
-@permission_required('relationship_app.can_view', raise_exception=True)
+@permission_required('LibraryProject.relationship_app.can_view', raise_exception=True)
 def list_books(request):
     books = Book.objects.all()
     return render(request, 'relationship_app/list_books.html', {'books': books})
@@ -71,7 +71,7 @@ def member_view(request):
     return render(request, 'relationship_app/member_view.html')
 
 
-@permission_required('relationship_app.can_create', raise_exception=True)
+@permission_required('LibraryProject.relationship_app.can_create', raise_exception=True)
 def add_book(request):
     if request.method == 'POST':
         form = BookForm(request.POST)
@@ -83,7 +83,7 @@ def add_book(request):
     return render(request, 'relationship_app/book_form.html', {'form': form, 'action': 'Add'})
 
 
-@permission_required('relationship_app.can_edit', raise_exception=True)
+@permission_required('LibraryProject.relationship_app.can_edit', raise_exception=True)
 def edit_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
     if request.method == 'POST':
@@ -96,7 +96,7 @@ def edit_book(request, pk):
     return render(request, 'relationship_app/book_form.html', {'form': form, 'action': 'Edit'})
 
 
-@permission_required('relationship_app.can_delete', raise_exception=True)
+@permission_required('LibraryProject.relationship_app.can_delete', raise_exception=True)
 def delete_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
     if request.method == 'POST':
