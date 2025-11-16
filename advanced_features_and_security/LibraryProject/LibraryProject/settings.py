@@ -131,15 +131,24 @@ AUTH_USER_MODEL = 'LibraryProject.relationship_app.CustomUser'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# Security settings and HTTPS best practices (tune for production)
-SECURE_SSL_REDIRECT = False  # Set to True in production when HTTPS is configured
-SESSION_COOKIE_SECURE = False  # Set to True in production
-CSRF_COOKIE_SECURE = False  # Set to True in production
-SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_BROWSER_XSS_FILTER = True
-X_FRAME_OPTIONS = 'DENY'
+# Security settings and HTTPS best practices
+# SECURE_SSL_REDIRECT: Set to True to redirect all non-HTTPS requests to HTTPS
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
 
-# HTTP Strict Transport Security
-SECURE_HSTS_SECONDS = 0  # Set to e.g. 31536000 (1 year) in production
-SECURE_HSTS_INCLUDE_SUBDOMAINS = False  # Set to True in production if using subdomains
-SECURE_HSTS_PRELOAD = False  # Set to True in production after verifying HSTS
+# SECURE_HSTS_SECONDS: Set an appropriate value (e.g., 31536000 for one year) to instruct browsers to only access the site via HTTPS for the specified time
+SECURE_HSTS_SECONDS = 31536000  # 1 year - instruct browsers to only access via HTTPS
+
+# SECURE_HSTS_INCLUDE_SUBDOMAINS and SECURE_HSTS_PRELOAD: Set to True to include all subdomains in the HSTS policy and to allow preloading
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Include all subdomains in HSTS policy
+SECURE_HSTS_PRELOAD = True  # Allow preloading in HSTS preload list
+
+# SESSION_COOKIE_SECURE: Set to True to ensure session cookies are only transmitted over HTTPS
+SESSION_COOKIE_SECURE = True  # Ensure session cookies are only transmitted over HTTPS
+
+# CSRF_COOKIE_SECURE: Set to True to ensure CSRF cookies are only transmitted over HTTPS
+CSRF_COOKIE_SECURE = True  # Ensure CSRF cookies are only transmitted over HTTPS
+
+# Secure Headers implementation
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent browsers from MIME-sniffing
+SECURE_BROWSER_XSS_FILTER = True  # Enable browser's XSS filtering
+X_FRAME_OPTIONS = 'DENY'  # Prevent site from being framed (clickjacking protection)
