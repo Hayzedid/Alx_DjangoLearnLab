@@ -135,6 +135,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # SECURE_SSL_REDIRECT: Set to True to redirect all non-HTTPS requests to HTTPS
 SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
 
+# SECURE_PROXY_SSL_HEADER: For deployment behind a proxy (e.g., load balancer)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # SECURE_HSTS_SECONDS: Set an appropriate value (e.g., 31536000 for one year) to instruct browsers to only access the site via HTTPS for the specified time
 SECURE_HSTS_SECONDS = 31536000  # 1 year - instruct browsers to only access via HTTPS
 
