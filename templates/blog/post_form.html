@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if form.instance.pk %}Edit{% else %}Create{% endif %} Post - Django Blog{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">
+                    {% if form.instance.pk %}
+                        <i class="fas fa-edit"></i> Edit Post
+                    {% else %}
+                        <i class="fas fa-plus"></i> Create New Post
+                    {% endif %}
+                </h5>
+            </div>
+            <div class="card-body p-4">
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <!-- Title Field -->
+                    <div class="mb-3">
+                        <label for="{{ form.title.id_for_label }}" class="form-label">
+                            <i class="fas fa-heading"></i> Post Title
+                        </label>
+                        {{ form.title }}
+                        {% if form.title.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.title.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <small class="form-text text-muted">Make your title clear and engaging</small>
+                    </div>
+
+                    <!-- Content Field -->
+                    <div class="mb-3">
+                        <label for="{{ form.content.id_for_label }}" class="form-label">
+                            <i class="fas fa-file-alt"></i> Content
+                        </label>
+                        {{ form.content }}
+                        {% if form.content.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.content.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <small class="form-text text-muted">Write your post content here. You can use markdown formatting.</small>
+                    </div>
+
+                    <!-- Status Field -->
+                    <div class="mb-3">
+                        <label for="{{ form.status.id_for_label }}" class="form-label">
+                            <i class="fas fa-flag"></i> Status
+                        </label>
+                        {{ form.status }}
+                        {% if form.status.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.status.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <small class="form-text text-muted">
+                            <strong>Draft:</strong> Only you can see this post<br>
+                            <strong>Published:</strong> Everyone can see this post
+                        </small>
+                    </div>
+
+                    <!-- Tags Field -->
+                    <div class="mb-4">
+                        <label for="{{ form.tags.id_for_label }}" class="form-label">
+                            <i class="fas fa-tags"></i> Tags
+                        </label>
+                        {{ form.tags }}
+                        {% if form.tags.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.tags.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <small class="form-text text-muted">
+                            Enter tags separated by commas (e.g., python, django, web)<br>
+                            Tags help readers find your post and organize content
+                        </small>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> 
+                            {% if form.instance.pk %}
+                                Save Changes
+                            {% else %}
+                                Publish Post
+                            {% endif %}
+                        </button>
+                        <a href="{% url 'post_list' %}" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> Cancel
+                        </a>
+                        {% if form.instance.pk %}
+                            <a href="{{ form.instance.get_absolute_url }}" class="btn btn-outline-primary">
+                                <i class="fas fa-eye"></i> View Post
+                            </a>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tips Card -->
+        <div class="card mt-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-lightbulb"></i> Writing Tips</h5>
+            </div>
+            <div class="card-body">
+                <ul class="mb-0">
+                    <li><strong>Use clear titles:</strong> Make your title descriptive and engaging</li>
+                    <li><strong>Structure your content:</strong> Use paragraphs and line breaks for readability</li>
+                    <li><strong>Add relevant tags:</strong> Help readers find your post through tags</li>
+                    <li><strong>Save as draft first:</strong> You can edit before publishing</li>
+                    <li><strong>Proofread:</strong> Check for spelling and grammar before publishing</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #id_title, #id_content, #id_status, #id_tags {
+        width: 100%;
+    }
+    
+    #id_content {
+        min-height: 300px;
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    }
+</style>
+{% endblock %}
