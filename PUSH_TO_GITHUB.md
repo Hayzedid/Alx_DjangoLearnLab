@@ -2,7 +2,7 @@
 
 ## ✅ Git Repository Initialized
 
-Your Django Blog project has been initialized as a git repository and is ready to push to GitHub.
+Your Django Blog project has been initialized as a git repository and Back-webis ready to push to GitHub.
 
 **Repository**: https://github.com/Hayzedid/Alx_DjangoLearnLab
 
