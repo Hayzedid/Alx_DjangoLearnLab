@@ -49,5 +49,5 @@ db.sqlite3-journal
 .env
 .env.local
 
-# Static files
-/static/
+# Static files (collected files only)
+/staticfiles/
