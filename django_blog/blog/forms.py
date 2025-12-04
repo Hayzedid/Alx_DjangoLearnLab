@@ -4,6 +4,19 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Post, Comment
 
 
+class TagWidget(forms.TextInput):
+    """Custom widget for handling tag input"""
+    def __init__(self, attrs=None):
+        default_attrs = {
+            'class': 'form-control',
+            'placeholder': 'Enter tags separated by commas (e.g., python, django, web)',
+            'data-role': 'tagsinput'
+        }
+        if attrs:
+            default_attrs.update(attrs)
+        super().__init__(attrs=default_attrs)
+
+
 class UserRegistrationForm(UserCreationForm):
     """Extended user registration form"""
     email = forms.EmailField(required=True)
@@ -49,10 +62,7 @@ class PostForm(forms.ModelForm):
                 'placeholder': 'Write your post content here...'
             }),
             'status': forms.Select(attrs={'class': 'form-control'}),
-            'tags': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Enter tags separated by commas (e.g., python, django, web)'
-            }),
+            'tags': TagWidget(),
         }
 
 
