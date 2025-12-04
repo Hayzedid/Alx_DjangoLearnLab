@@ -278,3 +278,9 @@ class UserPostsView(ListView):
         context['author'] = get_object_or_404(User, username=self.kwargs['username'])
         return context
 
+
+# Alias for TagPostListView (for compatibility)
+class PostByTagListView(TagPostListView):
+    """Alias for TagPostListView - Display all posts with a specific tag"""
+    pass
+
