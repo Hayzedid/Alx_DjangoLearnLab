@@ -28,6 +28,11 @@ urlpatterns = [
     path('comments/<int:pk>/edit/', views.CommentUpdateView.as_view(), name='comment_update'),
     path('comments/<int:pk>/delete/', views.CommentDeleteView.as_view(), name='comment_delete'),
     
+    # Alternative singular comment URLs (for compatibility)
+    path('post/<int:pk>/comments/new/', views.CommentCreateView.as_view(), name='comment_create_alt'),
+    path('comment/<int:pk>/update/', views.CommentUpdateView.as_view(), name='comment_update_alt'),
+    path('comment/<int:pk>/delete/', views.CommentDeleteView.as_view(), name='comment_delete_alt'),
+    
     # Tags and Search
     path('tags/<str:tag_name>/', views.TagPostListView.as_view(), name='tag_posts'),
     path('search/', views.SearchPostView.as_view(), name='search'),
